@@ -5,7 +5,7 @@
 We are given two matrices:
 
 $$
-A = \begin{pmatrix} 2 & -1 & 3 \\ 0 & 4 & 5 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 0 \\ -2 & 3 \\ 4 & 1 \end{pmatrix}.
+A = \begin{pmatrix} 2 & -1 & 3 \\ 0 & 4 & 5 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 0 \\ -2 & 3 \\ 4 & 1 \end{pmatrix}
 $$
 
 We need to:
@@ -15,9 +15,9 @@ We need to:
 
 ## Theoretical Background and Concepts
 
-- Matrix size is written as $\text{rows} \times \text{columns}$.
-- In the index notation $a_{ij}$, the first index $i$ tells us which row to look at, and the second index $j$ tells us which column.
-- A row vector is taken horizontally from left to right, and a column vector is taken vertically from top to bottom.
+Matrix size is written as rows $\times$ columns.
+In the index notation $a_{ij}$, the first index $i$ tells us which row to look at, and the second index $j$ tells us which column.
+A row vector is taken horizontally from left to right, and a column vector is taken vertically from top to bottom.
 
 ## Detailed Step-by-Step Solution
 
@@ -32,11 +32,14 @@ We need to:
 - $b_{32}$: Go to row 3, column 2 of matrix $B \rightarrow 1$.
 
 ### Step 3 — Writing the vectors
-- The second row of $A$ is:
+The second row of $A$ is:
+
 $$
 \begin{pmatrix} 0 & 4 & 5 \end{pmatrix}
 $$
-- The first column of $B$ is:
+
+The first column of $B$ is:
+
 $$
 \begin{pmatrix} 1 \\ -2 \\ 4 \end{pmatrix}
 $$
