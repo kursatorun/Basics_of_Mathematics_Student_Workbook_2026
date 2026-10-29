@@ -1,30 +1,49 @@
-# Problem
+# Problem 1 — Matrix Size and Entries
 
-Given matrices:
-$$ A=\begin{pmatrix}2&-1&3\\0&4&5\end{pmatrix},\qquad B=\begin{pmatrix}1&0\\-2&3\\4&1\end{pmatrix}. $$
+## Problem Statement
 
+We are given two matrices:
+
+$$
+A = \begin{pmatrix} 2 & -1 & 3 \\ 0 & 4 & 5 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 0 \\ -2 & 3 \\ 4 & 1 \end{pmatrix}.
+$$
+
+We need to:
 1. State the sizes of matrices $A$ and $B$.
-2. Read off the entries $a_{12}$, $a_{23}$, $b_{21}$, and $b_{32}$.
+2. Find the entries $a_{12}$, $a_{23}$, $b_{21}$, and $b_{32}$.
 3. Write the second row of $A$ and the first column of $B$ as vectors.
 
-# Solution
+## Theoretical Background and Concepts
 
-### Step 1 — Determine the sizes of matrices
-Matrix size is defined as $\text{number of rows} \times \text{number of columns}$.
-- Matrix $A$ has 2 rows and 3 columns, so its size is $2 \times 3$.
-- Matrix $B$ has 3 rows and 2 columns, so its size is $3 \times 2$.
+- Matrix size is written as $\text{rows} \times \text{columns}$.
+- In the index notation $a_{ij}$, the first index $i$ tells us which row to look at, and the second index $j$ tells us which column.
+- A row vector is taken horizontally from left to right, and a column vector is taken vertically from top to bottom.
 
-### Step 2 — Find the specified entries
-Using index notation where the first index is the row and the second is the column:
-- $a_{12} = -1$ (row 1, column 2 of $A$)
-- $a_{23} = 5$ (row 2, column 3 of $A$)
-- $b_{21} = -2$ (row 2, column 1 of $B$)
-- $b_{32} = 1$ (row 3, column 2 of $B$)
+## Detailed Step-by-Step Solution
 
-### Step 3 — Write row and column vectors
-- The second row of $A$ is: $\begin{pmatrix}0&4&5\end{pmatrix}$
-- The first column of $B$ is: $\begin{pmatrix}1\\-2\\4\end{pmatrix}$
+### Step 1 — Matrix sizes
+- Matrix $A$ has 2 horizontal rows and 3 vertical columns, so its size is $2 \times 3$.
+- Matrix $B$ has 3 horizontal rows and 2 vertical columns, so its size is $3 \times 2$.
 
-# Conclusion
+### Step 2 — Finding the entries
+- $a_{12}$: Go to row 1, column 2 of matrix $A \rightarrow -1$.
+- $a_{23}$: Go to row 2, column 3 of matrix $A \rightarrow 5$.
+- $b_{21}$: Go to row 2, column 1 of matrix $B \rightarrow -2$.
+- $b_{32}$: Go to row 3, column 2 of matrix $B \rightarrow 1$.
 
-Matrix dimensions and entries are identified directly by counting rows and columns. Matrix $A$ is $2 \times 3$, matrix $B$ is $3 \times 2$, and all extracted entries and vectors match their corresponding positions in the matrices.
+### Step 3 — Writing the vectors
+- The second row of $A$ is:
+$$
+\begin{pmatrix} 0 & 4 & 5 \end{pmatrix}
+$$
+- The first column of $B$ is:
+$$
+\begin{pmatrix} 1 \\ -2 \\ 4 \end{pmatrix}
+$$
+
+## Verification and Consistency Checks
+
+- Matrix $A$ has 6 total entries ($2 \cdot 3 = 6$), and matrix $B$ has 6 total entries ($3 \cdot 2 = 6$). This matches what is written in the problem.
+- A row of $A$ must have 3 numbers because $A$ has 3 columns, and our row vector has 3 numbers.
+- A column of $B$ must have 3 numbers because $B$ has 3 rows, and our column vector has 3 numbers.
+- The positions match the given matrices directly.
