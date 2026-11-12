@@ -1,244 +1,137 @@
+
 # Problem 9 — Composing Transformations
 
 ## Problem Statement
 
-We are given the matrices
+We have two matrices and a vector:
 
-$$
-S = \begin{pmatrix}
-2 & 0 \\
-0 & 1
-\end{pmatrix},
-\qquad
-R = \begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-$$
+```math
+S=\begin{pmatrix}2&0\\0&1\end{pmatrix}
+```
 
-and the vector
+```math
+R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+```
 
-$$
-x = \begin{pmatrix}
-1 \\
-2
-\end{pmatrix}.
-$$
+```math
+x=\begin{pmatrix}1\\2\end{pmatrix}
+```
 
-The matrix $S$ describes a nonuniform scaling, and $R$ describes a 90-degree counterclockwise rotation. We need to compute $RSx$ and $SRx$, compare the results, and explain why the order matters.
+We need to find RSx and SRx, compare the answers, and explain why the order matters.
 
 ## Theoretical Background and Concepts
 
-In a product of matrices applied to a vector, the matrix closest to the vector acts first:
+Matrix S changes the size of a vector. It multiplies the first coordinate by 2 and keeps the second coordinate the same.
 
-$$
-RSx = R(Sx),
-\qquad
-SRx = S(Rx).
-$$
+Matrix R rotates a vector 90 degrees counterclockwise.
 
-For a vector with coordinates $(a,b)$, the transformations are
-
-$$
-S\begin{pmatrix}
-a \\
-b
-\end{pmatrix}
-=
-\begin{pmatrix}
-2a \\
-b
-\end{pmatrix},
-\qquad
-R\begin{pmatrix}
-a \\
-b
-\end{pmatrix}
-=
-\begin{pmatrix}
--b \\
-a
-\end{pmatrix}.
-$$
-
-So $S$ doubles the horizontal coordinate, while $R$ rotates the vector 90 degrees counterclockwise.
+When we multiply matrices and vectors, we start from the right side.
 
 ## Detailed Step-by-Step Solution
 
-### Step 1 — Compute $RSx$
+### Step 1 — Find RSx
 
-First apply $S$ to $x$:
+First, we calculate Sx:
 
-$$
-Sx =
-\begin{pmatrix}
-2 & 0 \\
-0 & 1
-\end{pmatrix}
-\begin{pmatrix}
-1 \\
-2
-\end{pmatrix}
-=
-\begin{pmatrix}
-2 \\
-2
-\end{pmatrix}.
-$$
+```math
+Sx=\begin{pmatrix}2&0\\0&1\end{pmatrix}
+\begin{pmatrix}1\\2\end{pmatrix}
+```
 
-Then apply $R$:
+Calculate:
 
-$$
-RSx =
-\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-\begin{pmatrix}
-2 \\
-2
-\end{pmatrix}
-=
-\begin{pmatrix}
--2 \\
-2
-\end{pmatrix}.
-$$
+- First entry: 2(1) + 0(2) = 2
+- Second entry: 0(1) + 1(2) = 2
 
-### Step 2 — Compute $SRx$
+So:
 
-First apply $R$ to $x$:
+```math
+Sx=\begin{pmatrix}2\\2\end{pmatrix}
+```
 
-$$
-Rx =
-\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-\begin{pmatrix}
-1 \\
-2
-\end{pmatrix}
-=
-\begin{pmatrix}
--2 \\
-1
-\end{pmatrix}.
-$$
+Now we multiply by R:
 
-Then apply $S$:
+```math
+RSx=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+\begin{pmatrix}2\\2\end{pmatrix}
+```
 
-$$
-SRx =
-\begin{pmatrix}
-2 & 0 \\
-0 & 1
-\end{pmatrix}
-\begin{pmatrix}
--2 \\
-1
-\end{pmatrix}
-=
-\begin{pmatrix}
--4 \\
-1
-\end{pmatrix}.
-$$
+Calculate:
+
+- First entry: 0(2) + (-1)(2) = -2
+- Second entry: 1(2) + 0(2) = 2
+
+The result is:
+
+```math
+RSx=\begin{pmatrix}-2\\2\end{pmatrix}
+```
+
+### Step 2 — Find SRx
+
+First, we calculate Rx:
+
+```math
+Rx=\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+\begin{pmatrix}1\\2\end{pmatrix}
+```
+
+Calculate:
+
+- First entry: 0(1) + (-1)(2) = -2
+- Second entry: 1(1) + 0(2) = 1
+
+So:
+
+```math
+Rx=\begin{pmatrix}-2\\1\end{pmatrix}
+```
+
+Now we multiply by S:
+
+```math
+SRx=\begin{pmatrix}2&0\\0&1\end{pmatrix}
+\begin{pmatrix}-2\\1\end{pmatrix}
+```
+
+Calculate:
+
+- First entry: 2(-2) + 0(1) = -4
+- Second entry: 0(-2) + 1(1) = 1
+
+The result is:
+
+```math
+SRx=\begin{pmatrix}-4\\1\end{pmatrix}
+```
 
 ### Step 3 — Compare the results
 
-$$
-RSx =
-\begin{pmatrix}
--2 \\
-2
-\end{pmatrix}
-\ne
-\begin{pmatrix}
--4 \\
-1
-\end{pmatrix}
-= SRx.
-$$
+We have:
 
-For $RSx$, we stretch the vector first, then rotate it. For $SRx$, we rotate it first, then stretch it. Since $S$ stretches horizontally but not vertically, changing the order changes the result.
+```math
+RSx=\begin{pmatrix}-2\\2\end{pmatrix}
+```
+
+```math
+SRx=\begin{pmatrix}-4\\1\end{pmatrix}
+```
+
+The results are different, so RSx is not equal to SRx.
+
+In RSx, we first stretch the vector horizontally and then rotate it.
+
+In SRx, we first rotate the vector and then stretch it horizontally.
+
+The order matters because the rotation changes the direction of the vector. So the scaling affects different coordinates depending on when we apply it.
 
 ## Verification and Consistency Checks
 
-We can also multiply the matrices first:
+I checked the calculations again.
 
-$$
-RS =
-\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-\begin{pmatrix}
-2 & 0 \\
-0 & 1
-\end{pmatrix}
-=
-\begin{pmatrix}
-0 & -1 \\
-2 & 0
-\end{pmatrix}.
-$$
+- Sx = (2, 2), and rotating it gives (-2, 2).
+- Rx = (-2, 1), and scaling it gives (-4, 1).
 
-Then
+Both answers are correct.
 
-$$
-(RS)x =
-\begin{pmatrix}
-0 & -1 \\
-2 & 0
-\end{pmatrix}
-\begin{pmatrix}
-1 \\
-2
-\end{pmatrix}
-=
-\begin{pmatrix}
--2 \\
-2
-\end{pmatrix}.
-$$
-
-Similarly,
-
-$$
-SR =
-\begin{pmatrix}
-2 & 0 \\
-0 & 1
-\end{pmatrix}
-\begin{pmatrix}
-0 & -1 \\
-1 & 0
-\end{pmatrix}
-=
-\begin{pmatrix}
-0 & -2 \\
-1 & 0
-\end{pmatrix}.
-$$
-
-Therefore,
-
-$$
-(SR)x =
-\begin{pmatrix}
-0 & -2 \\
-1 & 0
-\end{pmatrix}
-\begin{pmatrix}
-1 \\
-2
-\end{pmatrix}
-=
-\begin{pmatrix}
--4 \\
-1
-\end{pmatrix}.
-$$
-
-These results match the step-by-step calculations. Both final answers are $2\times1$ vectors, as expected.
+This shows that changing the order of the transformations can change the final vector.
