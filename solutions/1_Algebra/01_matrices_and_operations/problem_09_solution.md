@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-We are given:
+We are given the matrices
 
 $$
 S = \begin{pmatrix}
@@ -13,49 +13,61 @@ S = \begin{pmatrix}
 R = \begin{pmatrix}
 0 & -1 \\
 1 & 0
-\end{pmatrix},
-\qquad
-x = \begin{pmatrix}
-1 \\
-2
 \end{pmatrix}
 $$
 
-The matrix $S$ stretches the horizontal coordinate by a factor of 2 and leaves the vertical coordinate unchanged. The matrix $R$ rotates a vector by 90 degrees counterclockwise.
+and the vector
 
-We need to compute $RSx$ and $SRx$, compare the results, and explain geometrically why the order matters.
+$$
+x = \begin{pmatrix}
+1 \\
+2
+\end{pmatrix}.
+$$
+
+The matrix $S$ describes a nonuniform scaling, and $R$ describes a 90-degree counterclockwise rotation. We need to compute $RSx$ and $SRx$, compare the results, and explain why the order matters.
 
 ## Theoretical Background and Concepts
 
-When applying a product of matrices to a vector, the rightmost matrix acts first:
+In a product of matrices applied to a vector, the matrix closest to the vector acts first:
 
 $$
 RSx = R(Sx),
 \qquad
-SRx = S(Rx)
+SRx = S(Rx).
 $$
 
-For a general vector, these transformations work as follows:
+For a vector with coordinates $(a,b)$, the transformations are
 
 $$
-S\begin{pmatrix}a\\b\end{pmatrix}
+S\begin{pmatrix}
+a \\
+b
+\end{pmatrix}
 =
-\begin{pmatrix}2a\\b\end{pmatrix}
-$$
-
-$$
-R\begin{pmatrix}a\\b\end{pmatrix}
+\begin{pmatrix}
+2a \\
+b
+\end{pmatrix},
+\qquad
+R\begin{pmatrix}
+a \\
+b
+\end{pmatrix}
 =
-\begin{pmatrix}-b\\a\end{pmatrix}
+\begin{pmatrix}
+-b \\
+a
+\end{pmatrix}.
 $$
 
-So $S$ doubles the horizontal coordinate, while $R$ turns the vector 90 degrees counterclockwise.
+So $S$ doubles the horizontal coordinate, while $R$ rotates the vector 90 degrees counterclockwise.
 
 ## Detailed Step-by-Step Solution
 
-### Step 1 — Compute RSx
+### Step 1 — Compute $RSx$
 
-First, apply $S$ to $x$:
+First apply $S$ to $x$:
 
 $$
 Sx =
@@ -69,17 +81,12 @@ Sx =
 \end{pmatrix}
 =
 \begin{pmatrix}
-2\cdot1+0\cdot2 \\
-0\cdot1+1\cdot2
-\end{pmatrix}
-=
-\begin{pmatrix}
 2 \\
 2
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-Next, apply $R$ to this result:
+Then apply $R$:
 
 $$
 RSx =
@@ -93,19 +100,14 @@ RSx =
 \end{pmatrix}
 =
 \begin{pmatrix}
-0\cdot2+(-1)\cdot2 \\
-1\cdot2+0\cdot2
-\end{pmatrix}
-=
-\begin{pmatrix}
 -2 \\
 2
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-### Step 2 — Compute SRx
+### Step 2 — Compute $SRx$
 
-First, apply $R$ to $x$:
+First apply $R$ to $x$:
 
 $$
 Rx =
@@ -119,17 +121,12 @@ Rx =
 \end{pmatrix}
 =
 \begin{pmatrix}
-0\cdot1+(-1)\cdot2 \\
-1\cdot1+0\cdot2
-\end{pmatrix}
-=
-\begin{pmatrix}
 -2 \\
 1
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-Next, apply $S$ to this result:
+Then apply $S$:
 
 $$
 SRx =
@@ -143,19 +140,12 @@ SRx =
 \end{pmatrix}
 =
 \begin{pmatrix}
-2\cdot(-2)+0\cdot1 \\
-0\cdot(-2)+1\cdot1
-\end{pmatrix}
-=
-\begin{pmatrix}
 -4 \\
 1
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-### Step 3 — Compare and explain geometrically
-
-The results are different:
+### Step 3 — Compare the results
 
 $$
 RSx =
@@ -168,18 +158,14 @@ RSx =
 -4 \\
 1
 \end{pmatrix}
-= SRx
+= SRx.
 $$
 
-For $RSx$, the point first moves from $(1,2)$ to $(2,2)$ because of the horizontal stretch. Rotating it then gives $(-2,2)$.
-
-For $SRx$, the point first rotates from $(1,2)$ to $(-2,1)$. The horizontal stretch then gives $(-4,1)$.
-
-The order matters because $S$ stretches only horizontally, not equally in all directions. Rotating changes which part of the vector lies in the horizontal direction, so stretching before or after the rotation produces different results.
+For $RSx$, we stretch the vector first, then rotate it. For $SRx$, we rotate it first, then stretch it. Since $S$ stretches horizontally but not vertically, changing the order changes the result.
 
 ## Verification and Consistency Checks
 
-We can check the answers by calculating the matrix products first:
+We can also multiply the matrices first:
 
 $$
 RS =
@@ -195,8 +181,10 @@ RS =
 \begin{pmatrix}
 0 & -1 \\
 2 & 0
-\end{pmatrix}
+\end{pmatrix}.
 $$
+
+Then
 
 $$
 (RS)x =
@@ -212,10 +200,10 @@ $$
 \begin{pmatrix}
 -2 \\
 2
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-Similarly:
+Similarly,
 
 $$
 SR =
@@ -231,8 +219,10 @@ SR =
 \begin{pmatrix}
 0 & -2 \\
 1 & 0
-\end{pmatrix}
+\end{pmatrix}.
 $$
+
+Therefore,
 
 $$
 (SR)x =
@@ -248,9 +238,7 @@ $$
 \begin{pmatrix}
 -4 \\
 1
-\end{pmatrix}
+\end{pmatrix}.
 $$
 
-These match the step-by-step results. Both answers are $2\times1$ vectors, as expected.
-
-A common mistake is applying the leftmost matrix first. In $RSx$, we must apply $S$ first, then $R$.
+These results match the step-by-step calculations. Both final answers are $2\times1$ vectors, as expected.
